@@ -66,7 +66,6 @@
             gap: 12px;
         }
 
-        /* Icon sofa solid không màu nền */
         .brand-icon {
             background: transparent;
             color: var(--primary-color);
@@ -207,17 +206,42 @@
             color: white;
         }
 
+/* Button chỉ dùng icon + chữ, không nền */
+.btn-icon-text{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    height:42px;
+    padding:8px 14px;
+    background:transparent;
+    border:1px solid var(--border-color);
+    color:var(--text-main);
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-icon-text:hover{
+    background:#f1f5f9;
+}
+
+
+/* Icon Query */
+.btn-icon-text:first-of-type svg{
+    color:#2563eb;
+}
+
+
+/* Icon Excel */
+.btn-icon-text:last-of-type svg{
+    color:#16a34a;
+}
+
         .btn-success:hover {
             background-color: var(--success-hover);
-        }
-
-        .btn-secondary {
-            background-color: #64748b;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: #475569;
         }
 
         /* Dashboard Stats */
@@ -250,12 +274,14 @@
         }
 
         /* Table Design */
-        .table-container {
-            overflow-x: auto;
-            max-height: 520px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
+.table-container {
+    overflow-x: auto;
+    overflow-y: visible;
+    max-height: 520px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
 
         table {
             border-collapse: collapse;
@@ -268,19 +294,156 @@
             background-color: #f1f5f9;
             color: var(--text-main);
             font-weight: 600;
-            padding: 12px 14px;
+            padding: 10px 14px;
             text-align: left;
             position: sticky;
             top: 0;
             z-index: 10;
             border-bottom: 1px solid var(--border-color);
-            cursor: pointer;
             user-select: none;
         }
 
-        th:hover {
-            background-color: #e2e8f0;
+        .th-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            cursor: pointer;
         }
+        .th-content:hover {
+            color: var(--primary-color);
+        }
+
+        .filter-icon-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 2px;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 4px;
+        }
+        .filter-icon-btn:hover, .filter-icon-btn.active {
+            color: var(--primary-color);
+            background: #e2e8f0;
+        }
+
+        /* Dropdown Popup Lọc theo Checkbox */
+.column-filter-dropdown {
+    display: none;
+    position: fixed !important;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 999999;
+    min-width: 220px;
+    max-width: 300px;
+    max-height: 280px;
+    overflow-y: auto;
+    text-align: left;
+    font-weight: normal;
+}
+
+
+/* Khi mở dropdown */
+.column-filter-dropdown.show {
+    display: block;
+}
+
+.column-filter-dropdown.show{
+    display:block;
+}
+
+        .column-filter-dropdown.show {
+            display: block;
+        }
+
+        .filter-search-input {
+            width: 100%;
+            padding: 6px 8px;
+            font-size: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        .filter-options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .filter-option-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .filter-option-item:hover {
+            background: var(--accent-bg);
+        }
+
+/* ===== Nút OK / Cancel của popup filter ===== */
+.filter-actions{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+    padding-top:8px;
+    border-top:1px solid #e5e7eb;
+}
+
+.filter-actions button{
+    flex:1;
+    padding:6px 10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.filter-actions button:first-child{
+    background:#2563eb;
+    color:#fff;
+}
+
+.filter-actions button:first-child:hover{
+    background:#1d4ed8;
+}
+
+.filter-actions button:last-child{
+    background:#e5e7eb;
+    color:#334155;
+}
+
+.filter-actions button:last-child:hover{
+    background:#cbd5e1;
+}
+
+/* ===== Highlight cột đang được lọc ===== */
+.filtered-column{
+    background:#dbeafe !important;
+    color:#1d4ed8 !important;
+}
+
+.filtered-column .filter-icon-btn{
+    color:#2563eb !important;
+}
+
+.filtered-column .filter-icon-btn svg{
+    stroke:#2563eb !important;
+}
 
         td {
             padding: 8px 14px;
@@ -295,12 +458,6 @@
         .col-qty {
             width: 90px;
             text-align: right;
-        }
-
-        td[contenteditable="true"] {
-            outline: 2px dashed var(--primary-color);
-            background-color: #fff !important;
-            border-radius: 4px;
         }
 
         .calculated-col-header {
@@ -338,15 +495,6 @@
             accent-color: var(--primary-color);
         }
 
-        /* Flex Wrapper cho các ô có nút copy */
-        .cell-copy-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-        }
-
-        /* Style chung cho Input và Copy Button trong ô */
         .input-cell-wrapper {
             display: flex;
             align-items: center;
@@ -368,14 +516,13 @@
             border-color: var(--primary-color);
         }
 
-        /* Date Time Input Styling & Copy Button */
         .date-cell-wrapper {
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
-        input[type="datetime-local"] {
+        input[type="date"] {
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 4px 6px;
@@ -384,7 +531,7 @@
             outline: none;
         }
 
-        input[type="datetime-local"]:focus {
+        input[type="date"]:focus {
             border-color: var(--primary-color);
         }
 
@@ -413,7 +560,6 @@
     <!-- Header Page -->
     <header class="app-header">
         <div class="brand">
-            <!-- Icon Sofa Solid không màu nền -->
             <div class="brand-icon">
                  <i data-lucide="monitor-cog" style="width: 28px; height: 28px;"></i>
             </div>
@@ -430,28 +576,24 @@
     <!-- File Upload & Action Controls Section -->
     <div class="card">
         <div class="upload-wrapper">
-            <!-- Ô kéo thả nhỏ gọn -->
             <div class="upload-area-compact" id="dropArea">
                 <i data-lucide="upload-cloud" class="upload-icon" style="width: 20px; height: 20px;"></i>
                 <div class="upload-text" id="fileNameDisplay">
-                    <strong>Chọn/kéo tệp Excel/CSV</strong> vào đây
+                    <strong>Chọn Excel/CSV</strong> vào đây
                 </div>
                 <input type="file" id="uploadFile" class="file-input" accept=".xlsx, .xls, .csv" onchange="handleFileSelect(event)" />
             </div>
 
-            <!-- Nút xử lý -->
-            <button class="btn btn-primary" onclick="processData()">
-                <i data-lucide="play" style="width: 16px;"></i> Query
+            <button class="btn-icon-text" onclick="processData()" title="Truy vấn và xử lý dữ liệu">
+               <i data-lucide="database-search" style="width:18px;height:18px;"></i>
             </button>
 
-            <!-- Nút Tải/Xuất File Excel đặt lên thanh công cụ -->
-            <button class="btn btn-success" onclick="exportToExcel()">
-                <i data-lucide="file-spreadsheet" style="width: 16px;"></i> Tải Excel
+            <button class="btn-icon-text" onclick="exportToExcel()" title="Xuất và tải file Excel">
+                <i data-lucide="file-down" style="width:18px;height:18px;"></i>
             </button>
 
-            <!-- Thanh tìm kiếm -->
             <div class="search-box-header">
-                <input type="text" id="searchInput" placeholder="Lọc dữ liệu" onkeyup="filterTable()">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh toàn bộ dữ liệu..." onkeyup="filterTable()">
             </div>
         </div>
     </div>
@@ -459,7 +601,7 @@
     <!-- Output Data Section -->
     <div class="card" id="resultContainer" style="display: none;">
         
-        <!-- Summary Stats (Bảng Tổng) -->
+        <!-- Summary Stats -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="label">Tổng Số Dòng</div>
@@ -488,21 +630,156 @@
             <table id="outputTable">
                 <thead>
                     <tr>
-                        <th onclick="sortTable('virtualToNo')">*Virtual TO No. ⇅</th>
-                        <th onclick="sortTable('loNo')">*LO No. ⇅</th>
-                        <th onclick="sortTable('loLineNo')">*LO Line No. ⇅</th>
-                        <th onclick="sortTable('soNo')">So No. ⇅</th>
-                        <th onclick="sortTable('customerName')">Customer Name ⇅</th>
-                        <th onclick="sortTable('item')">Item ⇅</th>
-                        <th class="col-qty" onclick="sortTable('itemQty')">Item QTY ⇅</th>
-                        <th class="calculated-col-header col-qty" onclick="sortTable('planShipQty')">*Plan Ship QTY ⇅</th>
-                        <th onclick="sortTable('volume')">Volume ⇅</th>
-                        <th onclick="sortTable('grossWeight')">Gross Weight ⇅</th>
-                        <th onclick="sortTable('soMabd')">SO MABD ⇅</th>
-                        <th onclick="sortTable('appointmentDateFrom')">*Appointment Date-From ⇅</th>
-                        <th onclick="sortTable('appointmentDateEnd')">Appointment Date-End ⇅</th>
-                        <th onclick="sortTable('shipToStore')">Ship To Store ⇅</th>
-                        <th onclick="sortTable('shipToAddress')">Ship To Address ⇅</th>
+                        <th data-col="virtualToNo">
+                            <div class="th-content">
+                                <span onclick="sortTable('virtualToNo')">*Virtual TO No. ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'virtualToNo')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-virtualToNo">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="loNo">
+                            <div class="th-content">
+                                <span onclick="sortTable('loNo')">*LO No. ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'loNo')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-loNo">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="loLineNo">
+                            <div class="th-content">
+                                <span onclick="sortTable('loLineNo')">*LO Line No. ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'loLineNo')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-loLineNo">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="soNo">
+                            <div class="th-content">
+                                <span onclick="sortTable('soNo')">So No. ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'soNo')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-soNo">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="customerName">
+                            <div class="th-content">
+                                <span onclick="sortTable('customerName')">Customer Name ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'customerName')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-customerName">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="item">
+                            <div class="th-content">
+                                <span onclick="sortTable('item')">Item ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'item')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-item">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th class="col-qty" data-col="itemQty">
+                            <div class="th-content">
+                                <span onclick="sortTable('itemQty')">Item QTY ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'itemQty')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-itemQty">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th class="calculated-col-header col-qty" data-col="planShipQty">
+                            <div class="th-content">
+                                <span onclick="sortTable('planShipQty')">*Plan Ship QTY ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'planShipQty')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-planShipQty">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="volume">
+                            <div class="th-content">
+                                <span onclick="sortTable('volume')">Volume ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'volume')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-volume">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="grossWeight">
+                            <div class="th-content">
+                                <span onclick="sortTable('grossWeight')">Gross Weight ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'grossWeight')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-grossWeight">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="soMabd">
+                            <div class="th-content">
+                                <span onclick="sortTable('soMabd')">SO MABD ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'soMabd')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-soMabd">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="appointmentDateFrom">
+                            <div class="th-content">
+                                <span onclick="sortTable('appointmentDateFrom')">*Appointment Date-From ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'appointmentDateFrom')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-appointmentDateFrom">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="appointmentDateEnd">
+                            <div class="th-content">
+                                <span onclick="sortTable('appointmentDateEnd')">Appointment Date-End ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'appointmentDateEnd')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-appointmentDateEnd">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="shipToStore">
+                            <div class="th-content">
+                                <span onclick="sortTable('shipToStore')">Ship To Store ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'shipToStore')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-shipToStore">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
+                        <th data-col="shipToAddress">
+                            <div class="th-content">
+                                <span onclick="sortTable('shipToAddress')">Ship To Address ⇅</span>
+                                <button class="filter-icon-btn" onclick="toggleFilterDropdown(event, 'shipToAddress')"><i data-lucide="filter" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="column-filter-dropdown" id="dropdown-shipToAddress">
+                                <input type="text" class="filter-search-input" placeholder="Tìm kiếm giá trị..." onkeyup="filterDropdownOptions(this)">
+                                <div class="filter-options-list"></div>
+                            </div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -514,32 +791,25 @@
 </div>
 
 <script>
-    // Khởi tạo Icon Lucide
     lucide.createIcons();
 
     let processedResultData = [];
     let currentSortColumn = '';
     let currentSortAsc = true;
+    let columnFilters = {}; // Lưu các giá trị được tick chọn cho từng cột
+    let tempColumnFilters = {};
 
-    // Chuyển đổi định dạng ngày giờ dạng chuẩn YYYY-MM-DD HH:mm:ss sang datetime-local (YYYY-MM-DDTHH:mm)
-    function formatToDatetimeLocal(dateStr) {
+    // Chuyển đổi định dạng ngày tháng dạng chuẩn YYYY-MM-DD (bỏ giờ)
+    function formatToDate(dateStr) {
         if (!dateStr) return '';
         const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return '';
+        if (isNaN(date.getTime())) {
+            return String(dateStr).split('T')[0].split(' ')[0];
+        }
         const pad = (n) => (n < 10 ? '0' + n : n);
-        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
     }
 
-    // Chuyển đổi từ datetime-local về YYYY-MM-DD HH:mm:ss
-    function formatFromDatetimeLocal(localStr) {
-        if (!localStr) return '';
-        const date = new Date(localStr);
-        if (isNaN(date.getTime())) return localStr;
-        const pad = (n) => (n < 10 ? '0' + n : n);
-        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
-    }
-
-    // Hiển thị tên file khi người dùng chọn
     function handleFileSelect(event) {
         const file = event.target.files[0];
         if (file) {
@@ -547,7 +817,6 @@
         }
     }
 
-    // Xử lý kéo & thả file (Drag & Drop)
     const dropArea = document.getElementById('dropArea');
     ['dragenter', 'dragover'].forEach(eventName => {
         dropArea.addEventListener(eventName, (e) => {
@@ -572,7 +841,6 @@
         }
     });
 
-    // Hàm xử lý dữ liệu chính
     function processData() {
         const fileInput = document.getElementById('uploadFile');
         const file = fileInput.files[0];
@@ -598,22 +866,17 @@
             }
 
             processedResultData = [];
+            columnFilters = {};
 
             rawData.forEach(row => {
                 const atp = parseFloat(row["ATP"]) || 0;
                 const itemQty = parseFloat(row["Item QTY"]) || 0;
 
-                // Điều kiện tính Plan Ship QTY
                 let planShipQty = (atp >= itemQty) ? itemQty : atp;
 
-                // BỎ CÁC GIÁ TRỊ BẰNG 0
                 if (planShipQty > 0) {
                     let rawFrom = String(row["Appointment Date Start"] || row["*Appointment Date-From"] || "");
                     let rawEnd = String(row["Appointment Date End"] || row["Appointment Date-End"] || "");
-
-                    // Nếu chưa có giờ chuẩn thì mặc định gắn 00:00:00
-                    if (rawFrom && !rawFrom.includes(":")) rawFrom += " 00:00:00";
-                    if (rawEnd && !rawEnd.includes(":")) rawEnd += " 00:00:00";
 
                     processedResultData.push({
                         virtualToNo: String(row["*Virtual TO No."] || row["Virtual TO No."] || ""),
@@ -627,8 +890,8 @@
                         volume: parseFloat(row["Total Volume"] || row["Volume"]) || 0,
                         grossWeight: parseFloat(row["Total Weight"] || row["Gross Weight"]) || 0,
                         soMabd: String(row["MABD"] || row["SO MABD"] || ""),
-                        appointmentDateFrom: rawFrom,
-                        appointmentDateEnd: rawEnd,
+                        appointmentDateFrom: formatToDate(rawFrom),
+                        appointmentDateEnd: formatToDate(rawEnd),
                         shipToStore: String(row["Ship To Store"] || ""),
                         shipToAddress: String(row["Ship To Address"] || ""),
                         selected: false
@@ -636,24 +899,21 @@
                 }
             });
 
-            // Sắp xếp mặc định theo Ship To Store
             processedResultData.sort((a, b) => 
                 a.shipToStore.localeCompare(b.shipToStore, undefined, { numeric: true, sensitivity: 'base' })
             );
 
             renderTable(processedResultData);
-            filterTable(); // Cập nhật đúng số liệu hiển thị ban đầu
+            updateSummaryStats(processedResultData);
         };
 
         reader.readAsArrayBuffer(file);
     }
 
-    // Cập nhật giá trị khi người dùng nhập vào input
     function handleInputChange(inputElement, index, field) {
         processedResultData[index][field] = inputElement.value.trim();
     }
 
-    // Copy giá trị một thuộc tính thuộc dòng index áp dụng cho TẤT CẢ các dòng có CÙNG Ship To Store
     function copyValueToSameStore(index, field) {
         const targetStore = processedResultData[index].shipToStore;
         const targetValue = processedResultData[index][field];
@@ -673,7 +933,6 @@
         filterTable();
     }
 
-    // Cập nhật bảng thống kê tính tổng Sum
     function updateSummaryStats(dataList = processedResultData) {
         let totalQtySum = 0;
         let planShipQtySum = 0;
@@ -694,76 +953,78 @@
         document.getElementById('statTotalWeight').innerText = totalWeightSum.toLocaleString('vi-VN', { maximumFractionDigits: 3, minimumFractionDigits: 0 });
     }
 
-    // Hiển thị dữ liệu ra bảng
-    function renderTable(data) {
-        const tbody = document.querySelector("#outputTable tbody");
-        tbody.innerHTML = "";
+function renderTable(data) {
+    const tbody = document.querySelector("#outputTable tbody");
+    tbody.innerHTML = "";
 
-        data.forEach((row, index) => {
-            const tr = document.createElement("tr");
-            tr.setAttribute("data-index", index);
-            
-            const dateFromFormatted = formatToDatetimeLocal(row.appointmentDateFrom);
-            const dateEndFormatted = formatToDatetimeLocal(row.appointmentDateEnd);
+    data.forEach((row, index) => {
+        const tr = document.createElement("tr");
+        tr.setAttribute("data-index", index);
 
-            tr.innerHTML = `
-                <td>
-                    <div class="input-cell-wrapper">
-                        <input type="text" value="${row.virtualToNo}" onchange="handleInputChange(this, ${index}, 'virtualToNo')" placeholder="Nhập Virtual TO No.">
-                        <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'virtualToNo')" title="Copy Virtual TO No. này cho cùng Ship To Store">
-                            <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
-                        </button>
-                    </div>
-                </td>
-                <td ondblclick="makeEditable(this, ${index}, 'loNo')">${row.loNo}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'loLineNo')">${row.loLineNo}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'soNo')">${row.soNo}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'customerName')">${row.customerName}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'item')"><strong>${row.item}</strong></td>
-                <td class="col-qty" ondblclick="makeEditable(this, ${index}, 'itemQty', true)">${row.itemQty}</td>
-                <td class="calculated-col-cell col-qty" ondblclick="makeEditable(this, ${index}, 'planShipQty', true)">${row.planShipQty}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'volume', true)">${row.volume}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'grossWeight', true)">${row.grossWeight}</td>
-                <td ondblclick="makeEditable(this, ${index}, 'soMabd')">${row.soMabd}</td>
-                <td>
-                    <div class="date-cell-wrapper">
-                        <input type="datetime-local" value="${dateFromFormatted}" onchange="handleDateChange(this, ${index}, 'appointmentDateFrom')">
-                        <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'appointmentDateFrom')" title="Copy thời gian này cho cùng Ship To Store">
-                            <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
-                        </button>
-                    </div>
-                </td>
-                <td>
-                    <div class="date-cell-wrapper">
-                        <input type="datetime-local" value="${dateEndFormatted}" onchange="handleDateChange(this, ${index}, 'appointmentDateEnd')">
-                        <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'appointmentDateEnd')" title="Copy thời gian này cho cùng Ship To Store">
-                            <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
-                        </button>
-                    </div>
-                </td>
-                <td>
-                    <div class="store-checkbox-cell">
-                        <input type="checkbox" class="store-checkbox" data-store="${row.shipToStore}" ${row.selected ? 'checked' : ''} onchange="handleStoreCheck(this, '${row.shipToStore}')">
-                        <span ondblclick="makeEditable(this.parentElement, ${index}, 'shipToStore')">${row.shipToStore}</span>
-                    </div>
-                </td>
-                <td ondblclick="makeEditable(this, ${index}, 'shipToAddress')">${row.shipToAddress}</td>
-            `;
-            tbody.appendChild(tr);
-        });
+        const dateFromFormatted = formatToDate(row.appointmentDateFrom);
+        const dateEndFormatted = formatToDate(row.appointmentDateEnd);
 
-        document.getElementById("resultContainer").style.display = "block";
-        lucide.createIcons(); // Tái tạo các icon Lucide mới render
-    }
+        tr.innerHTML = `
+            <td>
+                <div class="input-cell-wrapper">
+                    <input type="text" value="${row.virtualToNo}" onchange="handleInputChange(this, ${index}, 'virtualToNo')" placeholder="Nhập Virtual TO No.">
+                    <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'virtualToNo')" title="Copy Virtual TO No. này cho cùng Ship To Store">
+                        <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
+                    </button>
+                </div>
+            </td>
+            <td ondblclick="makeEditable(this, ${index}, 'loNo')">${row.loNo}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'loLineNo')">${row.loLineNo}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'soNo')">${row.soNo}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'customerName')">${row.customerName}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'item')"><strong>${row.item}</strong></td>
+            <td class="col-qty" ondblclick="makeEditable(this, ${index}, 'itemQty', true)">${row.itemQty}</td>
+            <td class="calculated-col-cell col-qty" ondblclick="makeEditable(this, ${index}, 'planShipQty', true)">${row.planShipQty}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'volume', true)">${row.volume}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'grossWeight', true)">${row.grossWeight}</td>
+            <td ondblclick="makeEditable(this, ${index}, 'soMabd')">${row.soMabd}</td>
+            <td>
+                <div class="date-cell-wrapper">
+                    <input type="date" value="${dateFromFormatted}" onchange="handleDateChange(this, ${index}, 'appointmentDateFrom')">
+                    <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'appointmentDateFrom')" title="Copy ngày này cho cùng Ship To Store">
+                        <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
+                    </button>
+                </div>
+            </td>
+            <td>
+                <div class="date-cell-wrapper">
+                    <input type="date" value="${dateEndFormatted}" onchange="handleDateChange(this, ${index}, 'appointmentDateEnd')">
+                    <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'appointmentDateEnd')" title="Copy ngày này cho cùng Ship To Store">
+                        <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
+                    </button>
+                </div>
+            </td>
+            <td>
+                <div class="store-checkbox-cell">
+                    <input type="checkbox" class="store-checkbox" data-store="${row.shipToStore}" ${row.selected ? 'checked' : ''} onchange="handleStoreCheck(this, '${row.shipToStore}')">
+                    <span ondblclick="makeEditable(this.parentElement, ${index}, 'shipToStore')">${row.shipToStore}</span>
+                </div>
+            </td>
+            <td ondblclick="makeEditable(this, ${index}, 'shipToAddress')">${row.shipToAddress}</td>
+        `;
 
-    // Xử lý thay đổi ngày giờ
+        tbody.appendChild(tr);
+    });
+
+    document.getElementById("resultContainer").style.display = "block";
+
+    lucide.createIcons();
+
+    filterTable();
+
+    updateFilterHighlight(); // Giữ highlight các cột đang được lọc sau khi render
+
+}
+
     function handleDateChange(inputElement, index, field) {
-        const val = inputElement.value;
-        const formattedDate = formatFromDatetimeLocal(val);
-        processedResultData[index][field] = formattedDate;
+        processedResultData[index][field] = inputElement.value;
     }
 
-    // Tính năng Sort
     function sortTable(columnKey) {
         if (currentSortColumn === columnKey) {
             currentSortAsc = !currentSortAsc;
@@ -789,10 +1050,8 @@
         });
 
         renderTable(processedResultData);
-        filterTable();
     }
 
-    // Tự động tick chọn tất cả các dòng có cùng Ship To Store
     function handleStoreCheck(checkbox, storeName) {
         const isChecked = checkbox.checked;
         
@@ -808,7 +1067,6 @@
         });
     }
 
-    // Cho phép Double Click để chỉnh sửa trực tiếp nội dung ô
     function makeEditable(element, index, field, isNumeric = false) {
         element.contentEditable = "true";
         element.focus();
@@ -842,84 +1100,427 @@
         element.addEventListener('keydown', onBlurOrEnter);
     }
 
-    // Tìm kiếm/Lọc trên tất cả các cột & Tự động SUM theo kết quả hiển thị
-    function filterTable() {
-        const input = document.getElementById("searchInput");
-        const filter = input.value.trim().toLowerCase();
-        const trs = document.querySelectorAll("#outputTable tbody tr");
+// Logic hiển thị popup checkbox lọc giá trị cho từng cột
+function toggleFilterDropdown(event, columnKey) {
 
-        let visibleData = [];
+    event.stopPropagation();
 
-        trs.forEach((tr) => {
-            const index = tr.getAttribute("data-index");
-            const rowData = processedResultData[index];
-            if (!rowData) return;
+    const dropdown = document.getElementById(`dropdown-${columnKey}`);
 
-            const textContent = Object.values(rowData).join(" ").toLowerCase();
+    if (!dropdown) return;
 
-            if (textContent.includes(filter)) {
-                tr.style.display = "";
-                visibleData.push(rowData);
-            } else {
-                tr.style.display = "none";
-            }
-        });
 
-        // Tính tổng Sum theo các dòng kết quả đang hiển thị
-        updateSummaryStats(visibleData);
-    }
+    const isShown = dropdown.classList.contains("show");
 
-function exportToExcel() {
-    if (processedResultData.length === 0) {
-        alert("Không có dữ liệu để xuất Excel!");
+
+    // Đóng tất cả dropdown khác
+    document.querySelectorAll(".column-filter-dropdown").forEach(d => {
+        d.classList.remove("show");
+        d.style.left = "";
+        d.style.top = "";
+    });
+
+
+    // Reset trạng thái icon
+    document.querySelectorAll(".filter-icon-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+
+    // Nếu đang mở thì đóng
+    if (isShown) {
         return;
     }
 
-    // Chuyển toàn bộ dữ liệu thành chuỗi (TEXT)
-    const exportData = processedResultData.map(r => ({
-        "*Virtual TO No.": String(r.virtualToNo ?? ""),
-        "*LO No.": String(r.loNo ?? ""),
-        "*LO Line No.": String(r.loLineNo ?? ""),
-        "So No.": String(r.soNo ?? ""),
-        "Customer Name": String(r.customerName ?? ""),
-        "Item": String(r.item ?? ""),
-        "Item QTY": String(r.itemQty ?? ""),
-        "*Plan Ship QTY": String(r.planShipQty ?? ""),
-        "Volume": String(r.volume ?? ""),
-        "Gross Weight": String(r.grossWeight ?? ""),
-        "SO MABD": String(r.soMabd ?? ""),
-        "*Appointment Date-From": String(r.appointmentDateFrom ?? ""),
-        "Appointment Date-End": String(r.appointmentDateEnd ?? ""),
-        "Ship To Store": String(r.shipToStore ?? ""),
-        "Ship To Address": String(r.shipToAddress ?? "")
-    }));
 
-    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    // Lấy vị trí nút filter
+    const rect = event.currentTarget.getBoundingClientRect();
 
-    // Ép toàn bộ ô dữ liệu thành TEXT
-    const range = XLSX.utils.decode_range(worksheet["!ref"]);
 
-    for (let R = range.s.r + 1; R <= range.e.r; R++) {
-        for (let C = range.s.c; C <= range.e.c; C++) {
+    // Lấy danh sách giá trị duy nhất
+    const uniqueValues = [
+        ...new Set(
+            processedResultData.map(row =>
+                String(row[columnKey] ?? "")
+            )
+        )
+    ];
 
-            const addr = XLSX.utils.encode_cell({ r: R, c: C });
 
-            if (!worksheet[addr]) continue;
+    // Mặc định chọn tất cả giống Excel
+    if (!columnFilters[columnKey]) {
 
-            worksheet[addr].t = "s";          // String
-            worksheet[addr].z = "@";          // Format Text
-            worksheet[addr].v = String(worksheet[addr].v ?? "");
-        }
+        columnFilters[columnKey] =
+            new Set(uniqueValues);
+
     }
 
+
+    // Copy sang bộ lọc tạm
+    // (chỉ áp dụng khi bấm OK)
+    tempColumnFilters[columnKey] =
+        new Set(columnFilters[columnKey]);
+
+
+    // Load checkbox trước để biết kích thước popup
+    populateFilterOptions(columnKey);
+
+
+    // Đưa popup ra ngoài bảng
+    dropdown.style.position = "fixed";
+    dropdown.style.zIndex = "999999";
+
+
+    let left = rect.left;
+    let top = rect.bottom + 5;
+
+
+    // Không cho popup vượt màn hình bên phải
+    const dropdownWidth = 240;
+
+    if (left + dropdownWidth > window.innerWidth) {
+        left = window.innerWidth - dropdownWidth - 10;
+    }
+
+
+    // Không cho popup vượt màn hình dưới
+    const dropdownHeight = 300;
+
+    if (top + dropdownHeight > window.innerHeight) {
+        top = rect.top - dropdownHeight - 5;
+    }
+
+
+    dropdown.style.left = left + "px";
+    dropdown.style.top = top + "px";
+
+
+    // Hiển thị popup
+    dropdown.classList.add("show");
+
+
+    // Active icon lọc
+    event.currentTarget.classList.add("active");
+}
+
+    // Đổ danh sách giá trị độc lập vào dropdown
+    function populateFilterOptions(columnKey) {
+        const dropdown = document.getElementById(`dropdown-${columnKey}`);
+        const listContainer = dropdown.querySelector('.filter-options-list');
+        listContainer.innerHTML = '';
+
+        // Lấy tất cả các giá trị độc lập từ dữ liệu hiện tại
+        const uniqueValues = [...new Set(processedResultData.map(row => String(row[columnKey] !== undefined ? row[columnKey] : '')))].sort((a, b) => 
+            a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+        );
+
+        // Khởi tạo mảng lọc cho cột này nếu chưa có (mặc định chọn tất cả)
+        if (!columnFilters[columnKey]) {
+            columnFilters[columnKey] = new Set(uniqueValues);
+        }
+
+        // Tạo nút Chọn tất cả / Bỏ chọn tất cả
+        const selectAllWrapper = document.createElement('label');
+        selectAllWrapper.className = 'filter-option-item';
+        selectAllWrapper.style.fontWeight = 'bold';
+        selectAllWrapper.style.borderBottom = '1px solid var(--border-color)';
+        selectAllWrapper.style.marginBottom = '4px';
+        selectAllWrapper.style.paddingBottom = '4px';
+        
+        const allChecked = uniqueValues.every(val => columnFilters[columnKey].has(val));
+        selectAllWrapper.innerHTML = `<input type="checkbox" ${allChecked ? 'checked' : ''} onchange="toggleSelectAllColumn(event, '${columnKey}')"> (Chọn tất cả)`;
+        listContainer.appendChild(selectAllWrapper);
+uniqueValues.forEach(val => {
+    const isChecked = tempColumnFilters[columnKey]
+        ? tempColumnFilters[columnKey].has(val)
+        : true;
+
+    const label = document.createElement("label");
+    label.className = "filter-option-item";
+
+    label.innerHTML = `
+        <input type="checkbox"
+               value="${escapeHtml(val)}"
+               ${isChecked ? "checked" : ""}
+               onchange="handleTempFilterChange('${columnKey}')">
+        ${val === "" ? "(Trống)" : escapeHtml(val)}
+    `;
+
+    listContainer.appendChild(label);
+});
+
+// Nút OK / Cancel
+const actions = document.createElement("div");
+actions.className = "filter-actions";
+
+actions.innerHTML = `
+    <button type="button" onclick="applyColumnFilter('${columnKey}')">
+        OK
+    </button>
+
+    <button type="button" onclick="cancelColumnFilter('${columnKey}')">
+        Cancel
+    </button>
+`;
+
+listContainer.appendChild(actions);
+}
+
+function toggleSelectAllColumn(event, columnKey) {
+
+    const isChecked = event.target.checked;
+
+    const dropdown = document.getElementById(`dropdown-${columnKey}`);
+
+    const checkboxes = dropdown.querySelectorAll(
+        '.filter-options-list input[type="checkbox"]'
+    );
+
+    const set = new Set();
+
+    checkboxes.forEach((cb, index) => {
+
+        if (index === 0) return; // bỏ qua checkbox "Chọn tất cả"
+
+        cb.checked = isChecked;
+
+        if (isChecked) {
+            set.add(cb.value);
+        }
+
+    });
+
+    tempColumnFilters[columnKey] = set;
+
+}
+
+function handleTempFilterChange(columnKey) {
+
+    const dropdown = document.getElementById(`dropdown-${columnKey}`);
+
+    const checkboxes = dropdown.querySelectorAll(
+        '.filter-options-list input[type="checkbox"]'
+    );
+
+    const set = new Set();
+
+    checkboxes.forEach((cb, index) => {
+
+        if (index === 0) return;
+
+        if (cb.checked) {
+            set.add(cb.value);
+        }
+
+    });
+
+    tempColumnFilters[columnKey] = set;
+
+    // cập nhật trạng thái "Chọn tất cả"
+    checkboxes[0].checked = (set.size === checkboxes.length - 1);
+
+}
+
+// Thêm ở đây
+function applyColumnFilter(columnKey) {
+
+    columnFilters[columnKey] =
+        new Set(tempColumnFilters[columnKey]);
+
+    filterTable();
+
+    document
+        .getElementById(`dropdown-${columnKey}`)
+        .classList.remove("show");
+
+    document
+        .querySelector(`button[onclick="toggleFilterDropdown(event, '${columnKey}')"]`)
+        ?.classList.remove("active");
+}
+
+function cancelColumnFilter(columnKey) {
+
+    tempColumnFilters[columnKey] =
+        new Set(columnFilters[columnKey]);
+
+    document
+        .getElementById(`dropdown-${columnKey}`)
+        .classList.remove("show");
+
+    document
+        .querySelector(`button[onclick="toggleFilterDropdown(event, '${columnKey}')"]`)
+        ?.classList.remove("active");
+}
+
+    function filterDropdownOptions(input) {
+        const filterVal = input.value.toLowerCase();
+        const listContainer = input.nextElementSibling;
+        const items = listContainer.querySelectorAll('.filter-option-item');
+
+        items.forEach((item, idx) => {
+            if (idx === 0) return; // Bỏ qua dòng "(Chọn tất cả)"
+            const text = item.innerText.toLowerCase();
+            if (text.includes(filterVal)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Đóng dropdown khi click ra ngoài
+    window.addEventListener('click', function(e) {
+        if (!e.target.closest('th')) {
+            document.querySelectorAll('.column-filter-dropdown').forEach(d => d.classList.remove('show'));
+            document.querySelectorAll('.filter-icon-btn').forEach(b => b.classList.remove('active'));
+        }
+    });
+
+// THÊM Ở ĐÂY
+function updateFilterHighlight(){
+
+    document.querySelectorAll("#outputTable thead th").forEach(th=>{
+        th.classList.remove("filtered-column");
+    });
+
+    Object.keys(columnFilters).forEach(key=>{
+
+        const totalValues = new Set(
+            processedResultData.map(r => String(r[key] ?? ""))
+        );
+
+        const selected = columnFilters[key];
+
+        if(selected && selected.size < totalValues.size){
+
+            const th = document.querySelector(
+                `th[data-col="${key}"]`
+            );
+
+            if(th){
+                th.classList.add("filtered-column");
+            }
+
+        }
+
+    });
+
+}
+    function escapeHtml(text) {
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // Lọc tổng hợp bảng dựa trên Ô tìm kiếm chung và các Checkbox lọc từng cột
+function filterTable() {
+    const globalInput = document.getElementById("searchInput").value.trim().toLowerCase();
+    const trs = document.querySelectorAll("#outputTable tbody tr");
+
+    let visibleData = [];
+
+    trs.forEach((tr) => {
+        const index = tr.getAttribute("data-index");
+        const rowData = processedResultData[index];
+        if (!rowData) return;
+
+        // 1. Kiểm tra bộ lọc Checkbox cho từng cột
+        let passColumnFilters = true;
+        for (let key in columnFilters) {
+            let cellVal = String(rowData[key] !== undefined ? rowData[key] : '');
+            if (columnFilters[key] && !columnFilters[key].has(cellVal)) {
+                passColumnFilters = false;
+                break;
+            }
+        }
+
+        // 2. Kiểm tra tìm kiếm chung toàn cục
+        let passGlobal = true;
+        if (globalInput !== "") {
+            passGlobal = Object.values(rowData).some(val =>
+                String(val).toLowerCase().includes(globalInput)
+            );
+        }
+
+        if (passColumnFilters && passGlobal) {
+            tr.style.display = "";
+            visibleData.push(rowData);
+        } else {
+            tr.style.display = "none";
+        }
+    });
+
+    updateSummaryStats(visibleData);
+    updateFilterHighlight(); // <-- Thêm ở đây
+
+}
+
+    // Xuất Excel giữ nguyên logic ban đầu của bạn
+function exportToExcel() {
+
+    if (processedResultData.length === 0) {
+        alert("Không có dữ liệu để xuất!");
+        return;
+    }
+
+    // Xuất các dòng được chọn, nếu không chọn thì xuất tất cả
+    let dataToExport = processedResultData.filter(row => row.selected);
+
+    if (dataToExport.length === 0) {
+        dataToExport = processedResultData;
+    }
+
+    const excelRows = dataToExport.map(row => ({
+        "*Virtual TO No.": String(row.virtualToNo ?? ""),
+        "*LO No.": String(row.loNo ?? ""),
+        "*LO Line No.": String(row.loLineNo ?? ""),
+        "So No.": String(row.soNo ?? ""),
+        "Customer Name": String(row.customerName ?? ""),
+        "Item": String(row.item ?? ""),
+        "Item QTY": String(row.itemQty ?? ""),
+        "*Plan Ship QTY": String(row.planShipQty ?? ""),
+        "Volume": String(row.volume ?? ""),
+        "Gross Weight": String(row.grossWeight ?? ""),
+        "SO MABD": String(row.soMabd ?? ""),
+        "*Appointment Date-From": row.appointmentDateFrom ? `${row.appointmentDateFrom} 00:00:00` : "",
+        "Appointment Date-End": row.appointmentDateEnd ? `${row.appointmentDateEnd} 00:00:00` : "",
+        "Ship To Store": String(row.shipToStore ?? ""),
+        "Ship To Address": String(row.shipToAddress ?? "")
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(excelRows);
+
+    // Ép toàn bộ ô sang định dạng Text (@)
+    Object.keys(worksheet).forEach(cell => {
+
+        if (cell.startsWith("!")) return;
+
+        worksheet[cell].t = "s";      // Kiểu String
+        worksheet[cell].z = "@";      // Định dạng Text
+
+        if (worksheet[cell].v !== undefined && worksheet[cell].v !== null) {
+            worksheet[cell].v = String(worksheet[cell].v);
+            worksheet[cell].w = String(worksheet[cell].v);
+        }
+
+    });
+
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+    XLSX.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        "LO_SO_Processed"
+    );
 
     XLSX.writeFile(
         workbook,
-        `Du_Lieu_LO_SO_${new Date().toISOString().slice(0,10)}.xlsx`
+        "Danh_Sach_Xu_Ly_LO_SO.xlsx",
+        {
+            cellStyles: true
+        }
     );
+
 }
 </script>
+
 </body>
 </html>
