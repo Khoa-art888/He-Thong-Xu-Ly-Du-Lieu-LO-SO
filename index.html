@@ -878,6 +878,12 @@
                 if (planShipQty > 0) {
                     let rawFrom = String(row["Appointment Date Start"] || row["*Appointment Date-From"] || "");
                     let rawEnd = String(row["Appointment Date End"] || row["Appointment Date-End"] || "");
+			
+		    // Lấy volume thô từ file nguồn
+		    const rawVolume = parseFloat(row["Total Volume"] || row["Volume"]) || 0;
+		    
+		    // Logic tính Volume từng dòng: (Volume / Item Qty) * Plan Ship Qty
+		    const lineVolume = itemQty > 0 ? (rawVolume / itemQty) * planShipQty : 0;
 
                     processedResultData.push({
                         virtualToNo: String(row["*Virtual TO No."] || row["Virtual TO No."] || ""),
@@ -888,11 +894,11 @@
                         item: String(row["Item"] || ""),
                         itemQty: itemQty,
                         planShipQty: planShipQty,
-                        volume: parseFloat(row["Total Volume"] || row["Volume"]) || 0,
+			volume: lineVolume,
                         grossWeight: parseFloat(row["Total Weight"] || row["Gross Weight"]) || 0,
                         soMabd: String(row["MABD"] || row["SO MABD"] || ""),
-                        appointmentDateFrom: formatToDate(rawFrom),
-                        appointmentDateEnd: formatToDate(rawEnd),
+                        appointmentDateFrom: rawFrom,
+                        appointmentDateEnd: rawEnd,
                         shipToStore: String(row["Ship To Store"] || ""),
                         shipToAddress: String(row["Ship To Address"] || ""),
                         selected: false
@@ -1002,7 +1008,7 @@ function renderTable(data) {
             </td>
             <td>
                 <div class="store-checkbox-cell">
-                    <input type="checkbox" class="store-checkbox" data-store="${row.shipToStore}" ${row.selected ? 'checked' : ''} onchange="handleStoreCheck(this, '${row.shipToStore}')">
+                    <input type="checkbox" class="store-checkbox" data-store="${row.shipToStore}" ${row.selected ? 'checked' : ''} onchange="handleStoreCheck('${row.shipToStore}', this.checked)">
                     <span ondblclick="makeEditable(this.parentElement, ${index}, 'shipToStore')">${row.shipToStore}</span>
                 </div>
             </td>
@@ -1053,20 +1059,25 @@ function renderTable(data) {
         renderTable(processedResultData);
     }
 
-    function handleStoreCheck(checkbox, storeName) {
-        const isChecked = checkbox.checked;
-        
-        processedResultData.forEach(row => {
-            if (row.shipToStore === storeName) {
-                row.selected = isChecked;
-            }
-        });
+function handleStoreCheck(storeName, isChecked) {
 
-        const checkboxes = document.querySelectorAll(`.store-checkbox[data-store="${CSS.escape(storeName)}"]`);
-        checkboxes.forEach(cb => {
-            cb.checked = isChecked;
-        });
-    }
+    // Cập nhật trạng thái selected trong dữ liệu
+    processedResultData.forEach(row => {
+        if (row.shipToStore === storeName) {
+            row.selected = isChecked;
+        }
+    });
+
+    // Đồng bộ trạng thái checkbox trên giao diện
+    const checkboxes = document.querySelectorAll(
+        `.store-checkbox[data-store="${CSS.escape(storeName)}"]`
+    );
+
+    checkboxes.forEach(cb => {
+        cb.checked = isChecked;
+    });
+
+}
 
     function makeEditable(element, index, field, isNumeric = false) {
         element.contentEditable = "true";
@@ -1734,7 +1745,7 @@ function exportToExcel() {
         "Gross Weight": String(row.grossWeight ?? ""),
         "SO MABD": String(row.soMabd ?? ""),
         "*Appointment Date-From": row.appointmentDateFrom ? `${row.appointmentDateFrom} 00:00:00` : "",
-        "Appointment Date-End": row.appointmentDateEnd ? `${row.appointmentDateEnd} 00:00:00` : "",
+        "*Appointment Date-End": row.appointmentDateEnd ? `${row.appointmentDateEnd} 00:00:00` : "",
         "Ship To Store": String(row.shipToStore ?? ""),
         "Ship To Address": String(row.shipToAddress ?? "")
     }));
