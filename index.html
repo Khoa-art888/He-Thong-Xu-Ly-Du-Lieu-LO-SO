@@ -349,57 +349,58 @@
 
 
 /* Khi mở dropdown */
-.column-filter-dropdown.show {
-    display: block;
-}
-
 .column-filter-dropdown.show{
     display:block;
 }
 
-        .column-filter-dropdown.show {
-            display: block;
-        }
+/* Ô tìm kiếm trong popup */
+.filter-search-input{
+    width:100%;
+    padding:6px 8px;
+    font-size:12px;
+    border:1px solid var(--border-color);
+    border-radius:6px;
+    margin-bottom:8px;
+    outline:none;
+}
 
-        .filter-search-input {
-            width: 100%;
-            padding: 6px 8px;
-            font-size: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-bottom: 8px;
-            outline: none;
-        }
+/* Danh sách checkbox */
+.filter-options-list{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    max-height:180px;
+    overflow-y:auto;
+    padding-bottom:0;
+}
 
-        .filter-options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            max-height: 180px;
-            overflow-y: auto;
-        }
+/* Từng dòng checkbox */
+.filter-option-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    cursor:pointer;
+    padding:4px;
+    border-radius:4px;
+}
 
-        .filter-option-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 4px;
-        }
+.filter-option-item:hover{
+    background:var(--accent-bg);
+}
 
-        .filter-option-item:hover {
-            background: var(--accent-bg);
-        }
-
-/* ===== Nút OK / Cancel của popup filter ===== */
+/* ===== Nút OK / Cancel ===== */
 .filter-actions{
+    position:sticky;
+    bottom:0;
+    left:0;
     display:flex;
     gap:8px;
-    margin-top:10px;
-    padding-top:8px;
+    margin-top:8px;
+    padding:10px 0 0;
+    background:#fff;
     border-top:1px solid #e5e7eb;
+    z-index:10;
 }
 
 .filter-actions button{
@@ -431,127 +432,158 @@
     background:#cbd5e1;
 }
 
-/* ===== Highlight cột đang được lọc ===== */
-.filtered-column{
-    background:#dbeafe !important;
-    color:#1d4ed8 !important;
+/* ===== Thanh hiển thị các cột đang lọc ===== */
+.active-filters-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:10px;
+    padding:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
 }
 
-.filtered-column .filter-icon-btn{
-    color:#2563eb !important;
+.filter-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#dbeafe;
+    color:#1d4ed8;
+    font-size:12px;
+    font-weight:600;
 }
 
-.filtered-column .filter-icon-btn svg{
-    stroke:#2563eb !important;
+.filter-tag i{
+    width:14px;
+    height:14px;
 }
 
-        td {
-            padding: 8px 14px;
-            border-bottom: 1px solid var(--border-color);
-            color: #334155;
-        }
+/* ===== Bảng dữ liệu ===== */
 
-        tbody tr:hover {
-            background-color: #f8fafc;
-        }
+td{
+    padding:8px 14px;
+    border-bottom:1px solid var(--border-color);
+    color:#334155;
+}
 
-        .col-qty {
-            width: 90px;
-            text-align: right;
-        }
+tbody tr:hover{
+    background-color:#f8fafc;
+}
 
-        .calculated-col-header {
-            background-color: #dcfce7 !important;
-            color: #166534 !important;
-        }
+.col-qty{
+    width:90px;
+    text-align:right;
+}
 
-        .calculated-col-cell {
-            background-color: #f0fdf4;
-            font-weight: 600;
-            color: #15803d;
-        }
+.calculated-col-header{
+    background-color:#dcfce7 !important;
+    color:#166534 !important;
+}
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
-            background: #e2e8f0;
-        }
+.calculated-col-cell{
+    background-color:#f0fdf4;
+    font-weight:600;
+    color:#15803d;
+}
 
-        .store-checkbox-cell {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:2px 8px;
+    border-radius:4px;
+    font-size:12px;
+    font-weight:500;
+    background:#e2e8f0;
+}
 
-        .store-checkbox {
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
-            accent-color: var(--primary-color);
-        }
+.store-checkbox-cell{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
 
-        .input-cell-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+.store-checkbox{
+    cursor:pointer;
+    width:16px;
+    height:16px;
+    accent-color:var(--primary-color);
+}
 
-        .input-cell-wrapper input[type="text"] {
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 4px 6px;
-            font-family: inherit;
-            font-size: 12px;
-            outline: none;
-            width: 100%;
-            min-width: 100px;
-        }
+.input-cell-wrapper{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
 
-        .input-cell-wrapper input[type="text"]:focus {
-            border-color: var(--primary-color);
-        }
+.input-cell-wrapper input[type="text"]{
+    border:1px solid var(--border-color);
+    border-radius:4px;
+    padding:4px 6px;
+    font-family:inherit;
+    font-size:12px;
+    outline:none;
+    width:100%;
+    min-width:100px;
+}
 
-        .date-cell-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+.input-cell-wrapper input[type="text"]:focus{
+    border-color:var(--primary-color);
+}
 
-        input[type="date"] {
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 4px 6px;
-            font-family: inherit;
-            font-size: 12px;
-            outline: none;
-        }
+.date-cell-wrapper{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
 
-        input[type="date"]:focus {
-            border-color: var(--primary-color);
-        }
+input[type="date"]{
+    border:1px solid var(--border-color);
+    border-radius:4px;
+    padding:4px 6px;
+    font-family:inherit;
+    font-size:12px;
+    outline:none;
+}
 
-        .btn-icon-copy {
-            background: #e2e8f0;
-            border: none;
-            border-radius: 4px;
-            padding: 4px 6px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-            flex-shrink: 0;
-        }
+input[type="date"]:focus{
+    border-color:var(--primary-color);
+}
 
-        .btn-icon-copy:hover {
-            background: var(--primary-color);
-            color: #fff;
-        }
+.date-cell-wrapper select{
+    width:80px;
+    height:28px;
+    font-size:12px;
+    border:1px solid var(--border-color);
+    border-radius:4px;
+    background:#fff;
+    outline:none;
+}
+
+.date-cell-wrapper select:focus{
+    border-color:var(--primary-color);
+}
+
+.btn-icon-copy{
+    background:#e2e8f0;
+    border:none;
+    border-radius:4px;
+    padding:4px 6px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s;
+    flex-shrink:0;
+}
+
+.btn-icon-copy:hover{
+    background:var(--primary-color);
+    color:#fff;
+}
     </style>
 </head>
 <body>
@@ -624,6 +656,9 @@
                 <div class="value" id="statTotalWeight">0</div>
             </div>
         </div>
+	<!-- Thanh hiển thị các cột đang được lọc -->
+	
+	<div id="activeFiltersBar" class="active-filters-bar" style="display:none;"></div>
 
         <!-- Table View -->
         <div class="table-container">
@@ -991,20 +1026,52 @@ function renderTable(data) {
             <td ondblclick="makeEditable(this, ${index}, 'grossWeight', true)">${row.grossWeight}</td>
             <td ondblclick="makeEditable(this, ${index}, 'soMabd')">${row.soMabd}</td>
             <td>
-                <div class="date-cell-wrapper">
-                    <input type="date" value="${dateFromFormatted}" onchange="handleDateChange(this, ${index}, 'appointmentDateFrom')">
-                    <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'appointmentDateFrom')" title="Copy ngày này cho cùng Ship To Store">
-                        <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
-                    </button>
-                </div>
+<div class="date-cell-wrapper">
+    <input type="date"
+           value="${dateFromFormatted}"
+           onchange="handleDateChange(this, ${index}, 'appointmentDateFrom')">
+
+    <select onchange="quickSelectDate(this, ${index}, 'appointmentDateFrom')">
+        <option value="">📅</option>
+        <option value="0">Hôm nay</option>
+        <option value="1">+1 ngày</option>
+        <option value="2">+2 ngày</option>
+        <option value="3">+3 ngày</option>
+        <option value="5">+5 ngày</option>
+        <option value="7">+7 ngày</option>
+        <option value="14">+14 ngày</option>
+        <option value="30">+30 ngày</option>
+    </select>
+
+    <button class="btn-icon-copy"
+            onclick="copyValueToSameStore(${index}, 'appointmentDateFrom')">
+        <i data-lucide="arrow-down" style="width:12px;height:12px;"></i>
+    </button>
+</div>
             </td>
             <td>
-                <div class="date-cell-wrapper">
-                    <input type="date" value="${dateEndFormatted}" onchange="handleDateChange(this, ${index}, 'appointmentDateEnd')">
-                    <button class="btn-icon-copy" onclick="copyValueToSameStore(${index}, 'appointmentDateEnd')" title="Copy ngày này cho cùng Ship To Store">
-                        <i data-lucide="arrow-down" style="width: 12px; height: 12px;"></i>
-                    </button>
-                </div>
+<div class="date-cell-wrapper">
+    <input type="date"
+           value="${dateEndFormatted}"
+           onchange="handleDateChange(this, ${index}, 'appointmentDateEnd')">
+
+    <select onchange="quickSelectDate(this, ${index}, 'appointmentDateEnd')">
+        <option value="">📅</option>
+        <option value="0">Hôm nay</option>
+        <option value="1">+1 ngày</option>
+        <option value="2">+2 ngày</option>
+        <option value="3">+3 ngày</option>
+        <option value="5">+5 ngày</option>
+        <option value="7">+7 ngày</option>
+        <option value="14">+14 ngày</option>
+        <option value="30">+30 ngày</option>
+    </select>
+
+    <button class="btn-icon-copy"
+            onclick="copyValueToSameStore(${index}, 'appointmentDateEnd')">
+        <i data-lucide="arrow-down" style="width:12px;height:12px;"></i>
+    </button>
+</div>
             </td>
             <td>
                 <div class="store-checkbox-cell">
@@ -1028,9 +1095,35 @@ function renderTable(data) {
 
 }
 
-    function handleDateChange(inputElement, index, field) {
-        processedResultData[index][field] = inputElement.value;
-    }
+function handleDateChange(inputElement, index, field) {
+    processedResultData[index][field] = inputElement.value;
+}
+
+// Chọn nhanh ngày: Hôm nay, +1, +2...
+function quickSelectDate(select, index, field){
+
+    if(select.value==="") return;
+
+    const days = parseInt(select.value,10);
+
+    const d = new Date();
+
+    d.setHours(0,0,0,0);
+
+    d.setDate(d.getDate()+days);
+
+    const value =
+        d.getFullYear()+"-"+
+        String(d.getMonth()+1).padStart(2,"0")+"-"+
+        String(d.getDate()).padStart(2,"0");
+
+    processedResultData[index][field]=value;
+
+    renderTable(processedResultData);
+
+    filterTable();
+
+}
 
     function sortTable(columnKey) {
         if (currentSortColumn === columnKey) {
@@ -1302,7 +1395,7 @@ function toggleFilterDropdown(event, columnKey) {
 
 }
 
-    // Đổ danh sách giá trị độc lập vào dropdown
+// Đổ danh sách giá trị độc lập vào dropdown
 function populateFilterOptions(columnKey) {
 
     const dropdown =
@@ -1311,10 +1404,11 @@ function populateFilterOptions(columnKey) {
     const listContainer =
         dropdown.querySelector('.filter-options-list');
 
-
+    // Xóa dữ liệu cũ
     listContainer.innerHTML = "";
 
-
+    // Xóa vùng nút cũ nếu có
+    dropdown.querySelector(".filter-actions")?.remove();
 
     // =====================================
     // LẤY DỮ LIỆU ĐANG HIỂN THỊ SAU FILTER
@@ -1325,50 +1419,38 @@ function populateFilterOptions(columnKey) {
             ? filteredResultData
             : processedResultData;
 
-
-
     // Giá trị duy nhất của cột
     const uniqueValues = [
         ...new Set(
             sourceData.map(row =>
-                String(
-                    row[columnKey] ?? ""
-                )
+                String(row[columnKey] ?? "")
             )
         )
-    ].sort((a,b)=>
+    ].sort((a, b) =>
         a.localeCompare(
             b,
             undefined,
             {
-                numeric:true,
-                sensitivity:"base"
+                numeric: true,
+                sensitivity: "base"
             }
         )
     );
-
-
 
     // =====================================
     // KHỞI TẠO FILTER MẶC ĐỊNH
     // =====================================
 
-    if(!columnFilters[columnKey]){
+    if (!columnFilters[columnKey]) {
 
         columnFilters[columnKey] =
             new Set(uniqueValues);
 
     }
 
-
-
     // Copy trạng thái hiện tại sang tạm
     tempColumnFilters[columnKey] =
         new Set(columnFilters[columnKey]);
-
-
-
-
 
     // =====================================
     // CHECKBOX CHỌN TẤT CẢ
@@ -1377,40 +1459,30 @@ function populateFilterOptions(columnKey) {
     const selectAllWrapper =
         document.createElement("label");
 
-
     selectAllWrapper.className =
         "filter-option-item";
-
 
     selectAllWrapper.style.fontWeight =
         "bold";
 
-
     selectAllWrapper.style.borderBottom =
         "1px solid var(--border-color)";
-
 
     selectAllWrapper.style.marginBottom =
         "4px";
 
-
     selectAllWrapper.style.paddingBottom =
         "4px";
-
-
 
     const allChecked =
         uniqueValues.length > 0 &&
         tempColumnFilters[columnKey].size === uniqueValues.length;
 
-
-
     selectAllWrapper.innerHTML = `
-
-        <input 
+        <input
             type="checkbox"
             id="select-all-${columnKey}"
-            ${allChecked ? "checked":""}
+            ${allChecked ? "checked" : ""}
             onchange="
                 toggleSelectAllColumn(
                     event,
@@ -1418,50 +1490,32 @@ function populateFilterOptions(columnKey) {
                 )
             "
         >
-
-        <span>
-            (Chọn tất cả)
-        </span>
-
+        <span>(Chọn tất cả)</span>
     `;
 
-
-
     listContainer.appendChild(selectAllWrapper);
-
-
-
-
 
     // =====================================
     // DANH SÁCH CHECKBOX GIÁ TRỊ
     // =====================================
 
-    uniqueValues.forEach(val=>{
-
+    uniqueValues.forEach(val => {
 
         const isChecked =
-            tempColumnFilters[columnKey]
-            .has(val);
-
-
+            tempColumnFilters[columnKey].has(val);
 
         const label =
             document.createElement("label");
 
-
         label.className =
             "filter-option-item";
 
-
-
         label.innerHTML = `
-
             <input
                 type="checkbox"
                 class="filter-value-checkbox"
                 value="${escapeHtml(val)}"
-                ${isChecked ? "checked":""}
+                ${isChecked ? "checked" : ""}
                 onchange="
                     handleTempFilterChange(
                         '${columnKey}'
@@ -1470,25 +1524,13 @@ function populateFilterOptions(columnKey) {
             >
 
             <span>
-                ${
-                    val === ""
-                    ? "(Trống)"
-                    : escapeHtml(val)
-                }
+                ${val === "" ? "(Trống)" : escapeHtml(val)}
             </span>
-
         `;
-
-
 
         listContainer.appendChild(label);
 
-
     });
-
-
-
-
 
     // =====================================
     // BUTTON OK / CANCEL
@@ -1497,35 +1539,25 @@ function populateFilterOptions(columnKey) {
     const actions =
         document.createElement("div");
 
-
     actions.className =
         "filter-actions";
 
-
     actions.innerHTML = `
-
-        <button 
+        <button
             type="button"
-            onclick="
-                applyColumnFilter('${columnKey}')
-            ">
+            onclick="applyColumnFilter('${columnKey}')">
             OK
         </button>
 
-
-        <button 
+        <button
             type="button"
-            onclick="
-                cancelColumnFilter('${columnKey}')
-            ">
+            onclick="cancelColumnFilter('${columnKey}')">
             Cancel
         </button>
-
     `;
 
-
-
-    listContainer.appendChild(actions);
+    // Thêm ra ngoài vùng cuộn
+    dropdown.appendChild(actions);
 
 }
 
@@ -1646,6 +1678,11 @@ function updateFilterHighlight(){
         th.classList.remove("filtered-column");
     });
 
+    const filterBar = document.getElementById("activeFiltersBar");
+    filterBar.innerHTML = "";
+
+    let hasFilter = false;
+
     Object.keys(columnFilters).forEach(key=>{
 
         const totalValues = new Set(
@@ -1656,6 +1693,9 @@ function updateFilterHighlight(){
 
         if(selected && selected.size < totalValues.size){
 
+            hasFilter = true;
+
+            // Highlight tiêu đề cột
             const th = document.querySelector(
                 `th[data-col="${key}"]`
             );
@@ -1664,10 +1704,23 @@ function updateFilterHighlight(){
                 th.classList.add("filtered-column");
             }
 
+            // Hiển thị tên cột đang lọc
+            const tag = document.createElement("div");
+            tag.className = "filter-tag";
+            tag.innerHTML = `
+                <i data-lucide="filter"></i>
+                ${th ? th.querySelector("span").innerText.replace(" ⇅","") : key}
+            `;
+
+            filterBar.appendChild(tag);
+
         }
 
     });
 
+    filterBar.style.display = hasFilter ? "flex" : "none";
+
+    lucide.createIcons();
 }
     function escapeHtml(text) {
         return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
